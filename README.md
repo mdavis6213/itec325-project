@@ -2,7 +2,7 @@
 TEAM MEMBERS: 
 -Michael Davis
 -Brandon Wolfe
--
+-Ashley Dickerson
 
 Project Description: 
 
