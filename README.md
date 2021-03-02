@@ -1,7 +1,7 @@
 # itec325-project
 TEAM MEMBERS: 
 -Michael Davis
--
+-Brandon Wolfe
 -
 
 Project Description: 
