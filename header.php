@@ -4,7 +4,7 @@
   </button>
 
     <a class="navbar-brand" href="index.php">
-      <img src="images/logo.png" width="25" height="25" alt="logo">
+      <img src="images/logo.png" width="25px" height="25px" alt="logo">
       Tech Takeout
     </a>
 
@@ -14,7 +14,7 @@
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Eat</a>
+        <a class="nav-link" href="restaurantView.php">Eat</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Favorites</a>
