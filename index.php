@@ -13,6 +13,24 @@
   <body>
 
     <?php include 'header.php';?>
+    <div id = "signinForm" class = "container" style="width: 400px;  padding: 20px; background-color: white;" >
+        <h1>Sign in</h1>
+        <hr>
+        <form>
+          <div class="signin-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email"  placeholder="Enter email">
+          </div>
+          <div class="signin-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+          </div>
+          <hr>
+          <div  style = "text-align:center;">
+            <button type="submit" class="btn btn-danger">Sign In!</button>
+          </div>
+        </form>
+    </div>
     <?php include 'footer.php';?>
 
     <!-- Optional JavaScript -->
