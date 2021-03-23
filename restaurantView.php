@@ -1,3 +1,20 @@
+
+<?php
+ function createMenuItemView($name,$description,$price,$imagePath){
+    echo
+    "<div class='col-md-4'>
+    <div class='card bg-warning' style='width:100%'>
+        <img class='card-img-top' src='$imagePath' alt='menu-item' style='width:100%'>
+        <div class='card-body'>
+            <h4 class='card-title'>$name</h4>
+            <h6 class='card-subtitle mb-2 text-muted'>$price</h6>
+            <p class='card-text'>$description</p>
+        </div>
+        </div>
+    </div>";
+ }
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -34,15 +51,16 @@
             <h1 style="text-align: center; margin-bottom: 5%">Menu</h1>
             <div class="container-fluid">
                 <div class="row">
-                    <?php include 'menuItemView.php';?>
-                    <?php include 'menuItemView.php';?>
-                    <?php include 'menuItemView.php';?>
+<!--                    --><?php //createMenuItemView("French Fries","Crunchy Delicious Golden Fries!","$5.50","images/fries.jpg");?>
+<!--                    --><?php //createMenuItemView("French Fries","Crunchy Delicious Golden Fries!","$5.50","images/fries.jpg");?>
+<!--                    --><?php //createMenuItemView("French Fries","Crunchy Delicious Golden Fries!","$5.50","images/fries.jpg");?>
+<!--                    --><?php //createMenuItemView("French Fries","Crunchy Delicious Golden Fries!","$5.50","images/fries.jpg");?>
+<!--                    --><?php //createMenuItemView("French Fries","Crunchy Delicious Golden Fries!","$5.50","images/fries.jpg");?>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
     <?php include 'footer.php';?>
 
     <!-- Optional JavaScript -->
