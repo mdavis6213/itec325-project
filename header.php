@@ -14,13 +14,13 @@
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="restaurantView.php">Eat</a>
+        <a class="nav-link" href="findFood.php">Eat</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Favorites</a>
       </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Profile</a>
+          <a class="nav-link" href="profile.php">Profile</a>
         </li>
     </ul>
  </div>
