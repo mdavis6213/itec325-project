@@ -1,4 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style = "margin-bottom: 2%">
+<style>
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-danger" style = "margin-bottom: 2%">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,20 +12,22 @@
       Tech Takeout
     </a>
 
-  <div class="collapse navbar-collapse" id="navbarToggler">
+  <div class="collapse navbar-collapse bg" id="navbarToggler">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link text-white" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="findFood.php">Eat</a>
+        <a class="nav-link text-white" href="findFood.php">Eat</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Favorites</a>
+        <a class="nav-link text-white" href="favorites.php">Favorites</a>
       </li>
         <li class="nav-item">
-          <a class="nav-link" href="profile.php">Profile</a>
+          <a class="nav-link text-white" href="profile.php">Profile</a>
         </li>
     </ul>
  </div>
  </nav>
+
+

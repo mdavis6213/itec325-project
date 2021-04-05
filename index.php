@@ -1,10 +1,10 @@
 <?php
     // database connection
-    $conn = mysqli_connect('localhost','mike','test','tech_takeout');
-
-    if(!$conn){
-        echo 'Connection error: '. mysqli_connect_error();
-    }
+//    $conn = mysqli_connect('localhost','mike','test','tech_takeout');
+//
+//    if(!$conn){
+//        echo 'Connection error: '. mysqli_connect_error();
+//    }
 
 ?>
 
@@ -18,7 +18,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Welcome</title>
 </head>
 <body>
 
@@ -41,6 +41,9 @@
                         <input type="password" class="form-control" id="password" placeholder="Password">
                     </div>
                     <hr>
+                    <a class="nav-link" href="register.php">
+                        <p style="text-decoration: underline; text-align: center">Need an account?</p>
+                    </a>
                     <div  style = "text-align:center;">
                         <button type="submit" class="btn btn-danger">Sign In!</button>
                     </div>
@@ -49,7 +52,6 @@
         </div>
     </div>
 </div>
-
 
 
 <?php include 'footer.php';?>
