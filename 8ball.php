@@ -7,41 +7,26 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+<link rel="stylesheet" href="styles/8ball.css">
     <title>Profile</title>
 </head>
 <body>
 
 <?php include 'header.php';?>
-
-<!--YOUR CODE HERE-->
-
-<img src="" >
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="Basic Info" role="tabpanel" aria-labelledby="home-tab">
-  <h3>Name</h3>
-  <p>John Doe</p>
-  <h3>Address</h3>
-  <p></p>
-  </div>
-  <div class="tab-pane fade" id="Edit" role="tabpanel" aria-labelledby="profile-tab">
-
-  </div>
-
+<div id="content">
+    <h1>Magic Ate ball </h1>
+    <p id="info">Ready to pick your restaurant?</p>
+    <input type="text" id="question" />
+    <div id="eight-ball" class="eight-ball">
+        <div class="answer">
+            <p id="eight">8</p>
+            <p id="answer"></p>
+        </div>
+    </div>
+</div>
 
 <?php include 'footer.php';?>
-
+<script src=""></script>
 <!-- Optional JavaScript -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

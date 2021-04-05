@@ -22,6 +22,9 @@
         <li class="nav-item">
           <a class="nav-link" href="profile.php">Profile</a>
         </li>
+        <li class="nav-item">
+                <a class="nav-link" href="8ball.php">Picker</a>
+             </li>
     </ul>
  </div>
  </nav>
