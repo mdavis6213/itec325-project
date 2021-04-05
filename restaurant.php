@@ -24,7 +24,7 @@
     <div class="row">
         <div class='card mx-auto text-center' style="width:45rem;">
             <div class="card-header bg-danger">
-                <h2 class='card-title'>Mikes burgers!</h2>
+                <h2 class='card-title text-white'>Mikes burgers!</h2>
             </div>
             <img src="images/restaurant1.jpg" alt="Card image">
             <div class='card-body'>
