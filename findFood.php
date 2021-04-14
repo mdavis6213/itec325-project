@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<?php require 'header.php';?>
+<?php include_once 'header.php';?>
 
 <div class="container-fluid" style= "width: 90%">
     <div class='card'>
@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<?php require 'footer.php';?>
+<?php include_once 'footer.php';?>
 
 
 

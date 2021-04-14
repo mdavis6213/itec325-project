@@ -1,13 +1,3 @@
-<?php
-    // database connection
-//    $conn = mysqli_connect('localhost','mike','test','tech_takeout');
-//
-//    if(!$conn){
-//        echo 'Connection error: '. mysqli_connect_error();
-//    }
-
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,39 +12,19 @@
 </head>
 <body>
 
-<?php include 'header.php';?>
+<?php include_once 'header.php';?>
 
-<div class="container">
-    <div class="row">
-        <div class='card mx-auto' style="width:45rem;">
-            <div class="card-header bg-danger">
-                <h2 class='card-title'>Sign in</h2>
-            </div>
-            <div class='card-body'>
-                <form>
-                    <div class="signin-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email"  placeholder="Enter email">
-                    </div>
-                    <div class="signin-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
-                    </div>
-                    <hr>
-                    <a class="nav-link" href="register.php">
-                        <p style="text-decoration: underline; text-align: center">Need an account?</p>
-                    </a>
-                    <div  style = "text-align:center;">
-                        <button type="submit" class="btn btn-danger">Sign In!</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<?php
+    //logged in
+    if(isset($_SESSION['email'])){
+        include_once 'userIndexContent.php';
+    }
+    else{
+        include_once 'guestIndexContent.php';
+    }
+?>
 
-
-<?php include 'footer.php';?>
+<?php include_once 'footer.php';?>
 
 
 <!-- Optional JavaScript -->
