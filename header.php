@@ -1,8 +1,13 @@
-<style>
+<?php
 
-</style>
+    session_start();
 
-<nav class="navbar navbar-expand-lg navbar-light bg-danger" style = "margin-bottom: 2%">
+    $loggedIn = false;
+
+    if(isset($_SESSION['email']))
+        $loggedIn = true;
+?>
+<nav class="navbar navbar-expand-md navbar-light bg-danger" style = "margin-bottom: 2%">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -14,22 +19,32 @@
 
   <div class="collapse navbar-collapse bg" id="navbarToggler">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link text-white" href="index.php">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="findFood.php">Eat</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="favorites.php">Favorites</a>
-      </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="profile.php">Profile</a>
+        <li class="nav-item active">
+            <a class="nav-link text-white" href="index.php">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-                <a class="nav-link" href="8ball.php">Picker</a>
-             </li>
+            <a class="nav-link text-white" href="findFood.php">Eat</a>
+        </li>
+        <?php
+            if($loggedIn) {
+                echo "<li class='nav-item'><a class='nav-link text-white' href='profile.php'>Profile</a></li>";
+                echo  "<li class='nav-item'><a class='nav-link text-white' href='favorites.php'>Favorites</a></li>";
+            }
+        ?>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="8ball.php">Picker</a>
+        </li>
+
     </ul>
+        <?php
+          //TODO fix link
+           if($loggedIn) {
+               echo "<a class='nav-link text-white'  href='logout.php'>Log out</a>";
+           }
+           else{
+               echo "<a class='nav-link text-white'  href='index.php'>Sign in</a>";
+           }
+        ?>
  </div>
  </nav>
 

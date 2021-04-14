@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<?php require 'header.php';?>
+<?php include_once 'header.php';?>
 
 
 <!--RestaurantCard-->
@@ -86,7 +86,7 @@
 
 
 
-<?php require 'footer.php';?>
+<?php include_once 'footer.php';?>
     <script>
         let fav = false;
 
