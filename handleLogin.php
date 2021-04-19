@@ -2,11 +2,7 @@
     require_once('validation-utils.php');
     require_once('dbLogin.php');
 
-    $connect = mysqli_connect('localhost','mike','test','tech_takeout');
-
-    if(!$connect){
-        echo 'Connection error: '. mysqli_connect_error();
-    }
+    require_once 'connect.php';
 
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -24,6 +20,7 @@
 
             session_start();
             $_SESSION["email"] = $email;
+            $_SESSION["ID"] = $row['ID'];
             $_SESSION["zipCode"] = $row['ZipCode'];
             $_SESSION["name"] = $row['Name'];
 
