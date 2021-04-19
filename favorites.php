@@ -30,10 +30,7 @@
         </div>
         <div class='card-body'>
             <div class="row">
-                <?php createRestaurantCard("Mikes burgers!","2","American","images/restaurant1.jpg",true);?>
-                <?php createRestaurantCard("Mikes burgers!","2","American","images/restaurant1.jpg",true);?>
-                <?php createRestaurantCard("Mikes burgers!","2","American","images/restaurant1.jpg",true);?>
-
+                <?php createFavoriteRestaurantCards()?>
             </div>
         </div>
     </div>
