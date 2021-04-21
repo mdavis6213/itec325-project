@@ -39,12 +39,14 @@
         <div class='card-body'>
                 <div class="row">
                     <?php
+                        // guest user trying to find food
                         if (isset($_GET['user'])){
                              echo
                              "<form role='form' method='get' action='findFood.php?'>
                                 <div class='form-group'>
                                     <label for='zip'>Enter zip code:</label>
-                                    <input type='text' name='zip' id='zip' pattern='^\s*?\d{5}(?:[-\s]\d{4})?\s*?$' required>             
+                                    <input type='text' name='zip' id='zip' pattern='^\s*?\d{5}(?:[-\s]\d{4})?\s*?$' required>   
+                                    <br/>             
                                     <label for='dis'>Distance:</label>
                                     <input type='range' name = 'dis' id = 'dis' min='0' max='100' value='25' class='slider'><span id='sliderText'></span>   
                                     <br/>                               
