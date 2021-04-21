@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<?php include_once 'header.php';?>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,7 +13,6 @@
 </head>
 
 
-<?php include_once 'header.php';?>
 <body>
 <h2 style="text-align:center">User Profile</h2>
 
@@ -41,8 +41,8 @@
     <label for="email">Email:</label>
     <input type="text" id="email" name="email" value= <?php echo $email ?>><br><br>
     <label for="zipcode">Zipcode:</label>
-    <input type="text" id="zipcode" name="zipcode" value=""><br><br>
-    <label for="fullname">Full Name:</label>
+    <input type="text" id="zipcode" name="zipcode" value=<?php echo $zipcode ?>><br><br>
+    <label for="fullname">Name:</label>
     <input type="text" id="fullname" name="fullname" value= <?php echo $name ?> ><br><br>
     Password: <input type="password" value="" id="myInput"><br><br>
     <input type="checkbox" onclick="myFunction()" value="">Show Password
