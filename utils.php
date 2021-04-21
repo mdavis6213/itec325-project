@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL);
+
 
 
 function createMenuItemView($name,$description,$price,$imagePath){
@@ -18,6 +20,7 @@ function createMenuItemView($name,$description,$price,$imagePath){
 
 function createRestaurantCard($name,$distance,$category,$imagePath,$id,$isFavorite= false){
     $buttonMaybe = "";
+    $disOrZip = ($isFavorite) ? $distance :  "$distance miles away";
 
     if(isset($_SESSION['ID'])) {
         $userId = $_SESSION['ID'];
@@ -32,7 +35,7 @@ function createRestaurantCard($name,$distance,$category,$imagePath,$id,$isFavori
                 <div class='card-body'>
                     <h3 class='card-title'>$name</h3>
                     <h4 class='card-title text-warning'><i class='material-icons' style='vertical-align: -1px; color:black;'>fastfood</i>$category</h4>
-                    <p><i class='material-icons' style='vertical-align: -6px;'>location_on</i>$distance miles away</p>
+                    <p><i class='material-icons' style='vertical-align: -6px;'>location_on</i>$disOrZip</p>
                     <a href='restaurant.php?id=$id' class='btn btn-warning'>Details</a>
                     $buttonMaybe
                 </div>
@@ -40,29 +43,25 @@ function createRestaurantCard($name,$distance,$category,$imagePath,$id,$isFavori
     </div>";
 }
 
+//////////DETAILS/////////////////////////////////////////////////////
 
-
-function createRestaurantDetailView($name,$zip,$phone,$description,$id){
+function createRestaurantDetailView($name,$zip,$phone,$description,$id,$connect){
     $favImage = "";
-    $isFav = false;
-
 
     if(isset($_SESSION['ID'])) {
-        include_once 'connect.php';
 
-        $isFav = isFavorite($id,$connect);
         $userId = $_SESSION['ID'];
 
-        if($isFav) {
-           $favImage = "<a href='toggleFavorite.php?isFav=$isFav&restaurantId=$id&userId=$userId'><img src='images/favorite.png' id = 'favImg' alt='menu-item' width='25px' height='25px'></a>";
-        }
-        else{
+        $isFav = isFavorite($id, $connect);
+
+
+        if($isFav === 1)
+            $favImage = "<a href='toggleFavorite.php?isFav=$isFav&restaurantId=$id&userId=$userId'><img src='images/favorite.png' id = 'favImg' alt='menu-item' width='25px' height='25px'></a>";
+        else
             $favImage = "<a href='toggleFavorite.php?isFav=$isFav&restaurantId=$id&userId=$userId'><img src='images/non-favorite.png' id = 'favImg' alt='menu-item' width='25px' height='25px'></a>";
-        }
     }
     else{
         $favImage = "<a href='register.php'><img src='images/non-favorite.png' id = 'favImg' alt='menu-item' width='25px' height='25px'></a>";
-
     }
 
     echo "<div class='card mx-auto text-center' style='width:45rem;'>
@@ -90,20 +89,67 @@ function createRestaurantDetailView($name,$zip,$phone,$description,$id){
         </div>";
 }
 
-function createAllRestaurantCards(){
+
+
+//////////FIND FOOD/////////////////////////////////////////////////////
+
+
+function createAllRestaurantCards($zip,$distance){
     include_once 'connect.php';
 
-    $SQLcmd = "SELECT * FROM restaurants";
-    $results = mysqli_query($connect,$SQLcmd);
-
-
-    while ($row=mysqli_fetch_assoc($results)) {
-        createRestaurantCard($row['Name'], "2", $row['Category'], "images/restaurant1.jpg",$row['ID']);
+    //query for coordinates of provided ZIP Code
+    if(!$rs = mysqli_query($connect,"SELECT * FROM Zips WHERE zip = $zip")) {
+        echo "<strong>There was a database error attempting to retrieve your ZIP Code.</strong> Please try again.\n";
     }
+    else {
+        if (mysqli_num_rows($rs) == 0) {
+            echo "<strong>No database match for provided ZIP Code.</strong> Please enter a new ZIP Code.\n";
+        }
+        else {
+            //if found, set variables
+            $row = mysqli_fetch_array($rs);
+            $lat1 = $row['lat'];
+            $lon1 = $row['lng'];
+            $d = $distance;
+            //earth's radius in miles
+            $r = 3959;
+
+            //compute max and min latitudes / longitudes for search square
+            $latN = rad2deg(asin(sin(deg2rad($lat1)) * cos($d / $r) + cos(deg2rad($lat1)) * sin($d / $r) * cos(deg2rad(0))));
+            $latS = rad2deg(asin(sin(deg2rad($lat1)) * cos($d / $r) + cos(deg2rad($lat1)) * sin($d / $r) * cos(deg2rad(180))));
+            $lonE = rad2deg(deg2rad($lon1) + atan2(sin(deg2rad(90)) * sin($d / $r) * cos(deg2rad($lat1)), cos($d / $r) - sin(deg2rad($lat1)) * sin(deg2rad($latN))));
+            $lonW = rad2deg(deg2rad($lon1) + atan2(sin(deg2rad(270)) * sin($d / $r) * cos(deg2rad($lat1)), cos($d / $r) - sin(deg2rad($lat1)) * sin(deg2rad($latN))));
+
+
+            //find all coordinates within the search square's area
+            //exclude the starting point and any empty city values
+
+            //$query =  "SELECT * FROM restaurants where ZipCode in  (SELECT zip FROM zips WHERE (lat <= $latN AND lat >= $latS AND lng <= $lonE AND lng >= $lonW) AND city != '' ORDER BY city, lat, lng)";
+
+            $query =  "select * from restaurants left join zips on restaurants.ZipCode = zips.zip where restaurants.ZipCode in (SELECT zip FROM zips WHERE (lat <= $latN AND lat >= $latS AND lng <= $lonE AND lng >= $lonW) AND city != '' ORDER BY city, lat, lng)";
+
+
+            if (!$rs = mysqli_query($connect, $query)) {
+                echo "<strong>There was an error selecting nearby ZIP Codes from the database.</strong>";
+            }
+            elseif (mysqli_num_rows($rs) == 0) {
+                echo "<strong>No nearby ZIP Codes located within the distance specified.</strong> Please try a different distance.\n";
+            }
+            else {
+                while($row = mysqli_fetch_array($rs)) {
+                     $distance = acos(sin(deg2rad($lat1)) * sin(deg2rad($row['lat'])) + cos(deg2rad($lat1)) * cos(deg2rad($row['lat'])) * cos(deg2rad($row['lng']) - deg2rad($lon1))) * $r;
+                     createRestaurantCard($row['Name'], number_format($distance, 2, '.', ''), $row['Category'], "images/restaurant1.jpg",$row['ID']);
+                }
+            }
+        }
+    }
+
 
     mysqli_close ($connect);
 }
 
+
+//////////FAVORITES/////////////////////////////////////////////////////
 
 function createFavoriteRestaurantCards(){
     include_once 'connect.php';
@@ -116,7 +162,7 @@ function createFavoriteRestaurantCards(){
 
 
     while ($row=mysqli_fetch_assoc($results)) {
-        createRestaurantCard($row['Name'], "2", $row['Category'], "images/restaurant1.jpg",$row['ID'],true);
+        createRestaurantCard($row['Name'], $row['ZipCode'], $row['Category'], "images/restaurant1.jpg",$row['ID'],true);
         $count++;
     }
 
@@ -126,8 +172,8 @@ function createFavoriteRestaurantCards(){
     mysqli_close ($connect);
 }
 
-function isFavorite($restaurantId,$connect){
 
+function isFavorite($restaurantId,$connect){
 
     $userID = $_SESSION['ID'];
 
@@ -137,12 +183,10 @@ function isFavorite($restaurantId,$connect){
 
     $rowcount=mysqli_num_rows($result);
 
-    mysqli_close ($connect);
+    if($rowcount === 0)
+        return 0;
 
-    if($rowcount ===0)
-        return false;
-
-    return true;
+    return 1;
 
 }
 

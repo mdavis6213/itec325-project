@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<?php include_once 'header.php';?>
+<?php include_once 'header.php'; ?>
 
 
 <!--RestaurantCard-->
@@ -29,9 +29,10 @@
 
         $row =mysqli_fetch_assoc($results);
 
-        createRestaurantDetailView($row['Name'],$row['ZipCode'],$row['Phone'],$row['Description'],$id);
+        createRestaurantDetailView($row['Name'],$row['ZipCode'],$row['Phone'],$row['Description'],$id,$connect);
 
         mysqli_close ($connect);
+
         ?>
 
     </div>
@@ -74,18 +75,6 @@
 
 
 <?php include_once 'footer.php';?>
-    <script>
-        let fav = false;
-
-        function updateFav() {
-            if(!fav)
-                document.getElementById("favImg").src = 'images/favorite.png';
-            else
-                document.getElementById("favImg").src = 'images/non-favorite.png';
-
-            fav = !fav;
-        }
-    </script>
 
     <!-- Optional JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

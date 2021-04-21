@@ -28,14 +28,35 @@
                     <h2>Food near you!</h2>
                 </div>
                 <div class="col-md-2 mb-auto">
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#filterModal"  style="width: 100%;">Filter</button>
+                    <?php
+                        if(isset($_SESSION['zipCode'])) {
+                            echo "<button type='button' class='btn btn-warning' data-toggle='modal' data-target='#filterModal'  style='width: 100%;'>Filter</button>";
+                        }
+                    ?>
                 </div>
             </div>
         </div>
         <div class='card-body'>
                 <div class="row">
                     <?php
-                         createAllRestaurantCards();
+                        if (isset($_GET['user'])){
+                             echo
+                             "<form role='form' method='get' action='findFood.php?'>
+                                <div class='form-group'>
+                                    <label for='zip'>Enter zip code:</label>
+                                    <input type='text' name='zip' id='zip' pattern='^\s*?\d{5}(?:[-\s]\d{4})?\s*?$' required>             
+                                    <label for='dis'>Distance:</label>
+                                    <input type='range' name = 'dis' id = 'dis' min='0' max='100' value='25' class='slider'><span id='sliderText'></span>   
+                                    <br/>                               
+                                    <button type='submit' class='btn btn-warning'>Search</button>                                 
+                                </div>
+                            </form>";
+                         }
+                        else{
+                            $zip = $_GET['zip'];
+                            $dis = $_GET['dis'];
+                            createAllRestaurantCards($zip,$dis);
+                        }
                     ?>
                 </div>
         </div>
@@ -61,29 +82,39 @@
             </div>
 
             <div class="modal-body text-center">
-                <form role="form">
+                <form role="form" method="get" action="findFood.php">
                     <div class="form-group">
                         <label for="zip">Zip Code:</label>
-                        <input id="zip" name="zip" type="text" placeholder="22026">
+                        <input type='text' name='zip' id='zip' value= <?php echo $_GET['zip']; ?> pattern='^\s*?\d{5}(?:[-\s]\d{4})?\s*?$' required>
                     </div>
                     <div class="form-group">
                         <div class="slidecontainer">
                             <label for="zip">Distance:</label>
-                            <input type="range" name = "range" min="1" max="100" value="50" class="slider">
+                            <input type="range" name = "dis" id = "dis" min="0" max="100" value="25" class="slider"> <span id="sliderText"></span>
                         </div>
                     </div>
-                </form>
-            </div>
 
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-warning">Apply</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning">Apply</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    let slider = document.getElementById("dis");
+    let output = document.getElementById("sliderText");
 
+    output.innerHTML = slider.value + " miles";
+
+    slider.oninput = function() {
+        output.innerHTML = this.value + " miles";
+    }
+</script>
 
 
 

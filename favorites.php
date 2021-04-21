@@ -1,6 +1,4 @@
-<?php
-    require_once 'utils.php';
-?>
+<?php require_once 'utils.php'; ?>
 
 <!doctype html>
 <html lang="en">
