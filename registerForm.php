@@ -36,6 +36,8 @@
                             echo "<p class='text-center' style='color: red; padding-top: 5%'>Passwords do not match!</p>";
                         if($error === 'emailinuse')
                             echo "<p class='text-center' style='color: red; padding-top: 5%'>Email already exists...</p>";
+                        if($error === 'emailinuse')
+                            echo "<p class='text-center' style='color: green; padding-top: 5%'>Account created</p>";
                     }
                     ?>
                   <hr>
