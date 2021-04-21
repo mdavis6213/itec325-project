@@ -22,13 +22,15 @@
         <li class="nav-item active">
             <a class="nav-link text-white" href="index.php">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="findFood.php">Eat</a>
-        </li>
         <?php
             if($loggedIn) {
+                $zip = $_SESSION['zipCode'];
+                echo "<li class='nav-item'><a class='nav-link text-white' href='findFood.php?dis=25&zip=$zip'>Eat</a></li>";
+                echo "<li class='nav-item'><a class='nav-link text-white' href='favorites.php'>Favorites</a></li>";
                 echo "<li class='nav-item'><a class='nav-link text-white' href='profile.php'>Profile</a></li>";
-                echo  "<li class='nav-item'><a class='nav-link text-white' href='favorites.php'>Favorites</a></li>";
+            }
+            else{
+                echo "<li class='nav-item'><a class='nav-link text-white' href='findFood.php?user=none'>Eat</a></li>";
             }
         ?>
         <li class="nav-item">

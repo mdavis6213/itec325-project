@@ -7,12 +7,13 @@ $SQLcmd = "";
 
 var_dump($_GET);
 
-if($isFav) {
-    $SQLcmd = "DELETE from favorites where UserId = $userID and RestaurantID = $restaurantID";
+
+if($isFav === "1") {
+    $SQLcmd = "DELETE from Favorites where UserId = $userID and RestaurantID = $restaurantID";
 }
 
-else{
-    $SQLcmd = "INSERT INTO Favorites (RestaurantID, UserID) VALUES('$userID','$restaurantID');";
+else if($isFav === "0") {
+    $SQLcmd = "INSERT INTO Favorites (RestaurantID, UserID) VALUES('$restaurantID', '$userID')";
 }
 
 mysqli_query($connect, $SQLcmd);
