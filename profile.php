@@ -16,21 +16,49 @@
 <body>
 <h2 style="text-align:center">User Profile</h2>
 
+<?php
+    include_once 'connect.php';
+
+     $accountUpdated = false;
+
+     if(isset($_GET['account'])){
+         $accountUpdated = true;
+     }
+     $email = $_SESSION['email'];
+     $result = mysqli_query($connect, "Select * from Users where Email = '$email';");
+     $row = mysqli_fetch_assoc($result);
+     $name = $row['Name'];
+     $zipcode = $row['ZipCode'];
+
+     mysqli_close ($connect);
+
+?>
+
 <div class="card">
   <img src="images/user.png" alt="UserPic" style="width:100%">
-  <h1>Brandon Wolfe</h1>
   <p class="title">
-  <form action="/profile.php">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" value="$session|"><br><br>
+  <form action="changeInfo.php" method = "post">
     <label for="email">Email:</label>
-    <input type="text" id="email" name="email" value=""><br><br>
+    <input type="text" id="email" name="email" value= <?php echo $email ?>><br><br>
     <label for="zipcode">Zipcode:</label>
     <input type="text" id="zipcode" name="zipcode" value=""><br><br>
     <label for="fullname">Full Name:</label>
-    <input type="text" id="fullname" name="fullname" value=""><br><br>
+    <input type="text" id="fullname" name="fullname" value= <?php echo $name ?> ><br><br>
     Password: <input type="password" value="" id="myInput"><br><br>
     <input type="checkbox" onclick="myFunction()" value="">Show Password
+    <button type="submit" class="btn btn-danger">Save Changes!</button>
+    <?php
+       if($accountUpdated)
+        echo "<p style = 'color: green;'>Account updated successfully!</p>";
+    ?>
+<br>
+<br>
+<br>
+
+  </form>
+
+<?php include_once 'footer.php';?>
+
 
     <script>
     function myFunction() {
@@ -42,13 +70,6 @@
       }
     }
     </script>
-<br>
-<br>
-<br>
-
-  </form>
-
-<?php include_once 'footer.php';?>
 
 <!-- Optional JavaScript -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
