@@ -155,7 +155,7 @@ function createFavoriteRestaurantCards(){
     include_once 'connect.php';
 
     $userID = $_SESSION['ID'];
-    $SQLcmd = "SELECT * FROM restaurants where ID in (Select UserID from favorites where UserID = $userID)";
+    $SQLcmd = "SELECT * from restaurants where ID in (Select restaurantID from favorites where UserID = $userID)";
     $results = mysqli_query($connect,$SQLcmd);
 
     $count =0;
