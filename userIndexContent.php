@@ -5,8 +5,8 @@
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-3">Hello, <?php echo $_SESSION['name'] ?></h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+            <p>Welcome Back! Ready to enjoy your next meal?</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Pick Where to Go >></a></p>
         </div>
     </div>
 
@@ -14,19 +14,20 @@
         <!-- Example row of columns -->
         <div class="row">
             <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                <h2>View Recent Orders</h2>
+                <p><strong>Restaurant 1</strong> <br> 1 entree <br> 1 drink <br></p>
+                <p><strong>Restaurant 1</strong><br> 1 entree <br> 1 drink <br></p>
+                <p><a class="btn btn-secondary" href="#" role="button">View orders »</a></p>
             </div>
             <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                <h2>Ready to Try Somewhere New?</h2>
+                <p>You have not tried a new restaurant recently. You should try this (restaurant name) based off our previous suggestions.  </p>
+                <p><a class="btn btn-secondary" href="#" role="button">Look at Menus »</a></p>
             </div>
             <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                <h2>Want to be in the know for new features? </h2>
+                <p>This platform will be updating soon how you will see your favorites would you like to see what else we might change in the future? </p>
+                <p><a class="btn btn-secondary" href="#" role="button">View News Updates »</a></p>
             </div>
         </div>
 
