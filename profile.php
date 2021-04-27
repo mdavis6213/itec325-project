@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<?php include_once 'header.php';?>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -7,40 +8,68 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="styles/profile.css"
     <title>Profile</title>
 </head>
+
+
 <body>
+<h2 style="text-align:center">User Profile</h2>
 
-<?php include_once 'header.php';?>
+<?php
+    include_once 'connect.php';
 
-<!--YOUR CODE HERE-->
+     $accountUpdated = false;
 
-<img src="" >
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="Basic Info" role="tabpanel" aria-labelledby="home-tab">
-  <h3>Name</h3>
-  <p>John Doe</p>
-  <h3>Address</h3>
-  <p></p>
-  </div>
-  <div class="tab-pane fade" id="Edit" role="tabpanel" aria-labelledby="profile-tab">
+     if(isset($_GET['account'])){
+         $accountUpdated = true;
+     }
+     $email = $_SESSION['email'];
+     $result = mysqli_query($connect, "Select * from Users where Email = '$email';");
+     $row = mysqli_fetch_assoc($result);
+     $name = $row['Name'];
+     $zipcode = $row['ZipCode'];
 
-  </div>
+     mysqli_close ($connect);
 
+?>
+
+<div class="card">
+  <img src="images/user.png" alt="UserPic" style="width:100%">
+  <p class="title">
+  <form action="changeInfo.php" method = "post">
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" value= <?php echo $email ?>><br><br>
+    <label for="zipcode">Zipcode:</label>
+    <input type="text" id="zipcode" name="zipcode" value=<?php echo $zipcode ?>><br><br>
+    <label for="fullname">Name:</label>
+    <input type="text" id="fullname" name="fullname" value= <?php echo $name ?> ><br><br>
+    Password: <input type="password" value="" id="myInput"><br><br>
+    <input type="checkbox" onclick="myFunction()" value="">Show Password
+    <button type="submit" class="btn btn-danger">Save Changes!</button>
+    <?php
+       if($accountUpdated)
+        echo "<p style = 'color: green;'>Account updated successfully!</p>";
+    ?>
+<br>
+<br>
+<br>
+
+  </form>
 
 <?php include_once 'footer.php';?>
+
+
+    <script>
+    function myFunction() {
+      var x = document.getElementById("myInput");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+    </script>
 
 <!-- Optional JavaScript -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
